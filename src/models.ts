@@ -1,10 +1,4 @@
-import { t } from "elysia";
-
-let str = t.String();
-let int = t.Integer();
-let num = t.Numeric();
-const obj = (type: any) => t.Object(type);
-const opt = (type: any) => t.Optional(type);
+import {str, int, num, obj, opt} from './modelAlias';
 
 const auth = obj({
   username: str, 
@@ -27,4 +21,5 @@ const query = obj({
 const slug = obj({
   id: num,
 })
+
 export { auth, account, slug, query};

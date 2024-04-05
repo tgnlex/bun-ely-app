@@ -33,9 +33,8 @@ app.group('/user', app => app
 app.group('/blog', app => app
   .state(posts)
   .get("/", () => file('./pages/blog.html'))
-  .get('/post/:id', ({body}) => body, {
-    body: slug, 
-    response: slug
+  .get('/post/:id', ({params}) => params, {
+    params: slug
   })
   .get('/post/*', ({store, getDate}) => {
     console.log(store['posts'])

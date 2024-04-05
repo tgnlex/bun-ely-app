@@ -18,8 +18,11 @@ const query = obj({
   alias: opt(str),
 
 })
+const headers = obj({
+  authorization: str,
+})
 const slug = obj({
   id: num,
 })
 
-export { auth, account, slug, query};
+export { auth, account, slug, query, headers};

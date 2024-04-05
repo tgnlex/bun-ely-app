@@ -1,4 +1,4 @@
-import {str, int, num, obj, opt} from './modelAlias';
+import {str, int, num, obj, opt} from './modelAliases';
 
 const auth = obj({
   username: str, 

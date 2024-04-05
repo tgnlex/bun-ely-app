@@ -1,5 +1,5 @@
 import {file} from 'bun'
-import { Elysia, t } from "elysia";
+import { Elysia } from "elysia";
 import {banner} from './functions';
 import posts from './json/posts';
 import version from './json/version'

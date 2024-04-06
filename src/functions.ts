@@ -1,5 +1,9 @@
 import figlet from 'figlet';
 
+export const read = (text:string) => {
+  return text;
+}
+
 export const log = (data: any) => {
   return console.log(data);
 }
@@ -7,16 +11,15 @@ export const json = (data: any) => {
   return JSON.stringify(data);
 }
 
-export const read = (text:string) => {
-  return text;
-}
 
 export const res = (data: any) => {
   return new Response(data);
 }
 
 export const greet = () => {
-  read('Hello World!')
+  let greeting = `Hello World`;
+  log(greeting)
+  read(greeting)
 }
 
 export const banner = (data: string) => {

@@ -1,17 +1,15 @@
 import {file} from 'bun'
 import { Elysia } from "elysia";
-import {banner} from './functions';
+import {banner, log} from './functions';
 import posts from './json/posts';
 import version from './json/version'
 import {auth, account, slug} from './models';
-
-
-
 
 const app = new Elysia()
   .decorate('getDate', () => Date.now())
   .get("/", () => file('./pages/index.html'))
   .get("/version", () => {
+    log(version);
     return version;
   })
   .listen(3000);
@@ -37,12 +35,12 @@ app.group('/blog', app => app
     params: slug
   })
   .get('/post/*', ({store, getDate}) => {
-    console.log(store['posts'])
-    console.log(getDate())
+    log(store['posts'])
+    log(getDate())
     return new Response(JSON.stringify(store['posts']))
   })
   .post('/new', ({store, body, set, getDate}) => {
-    console.log(getDate())
+    log(getDate())
     set.status = 201;
     return {body}
   })

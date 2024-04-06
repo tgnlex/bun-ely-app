@@ -1,6 +1,6 @@
 import {file} from 'bun'
 import { Elysia } from "elysia";
-import {banner, log} from './functions';
+import {banner, res, log, json} from './functions';
 import posts from './json/posts';
 import version from './json/version'
 import {auth, account, slug} from './models';
@@ -35,9 +35,10 @@ app.group('/blog', app => app
     params: slug
   })
   .get('/post/*', ({store, getDate}) => {
-    log(store['posts'])
+    let posts = store['posts']
     log(getDate())
-    return new Response(JSON.stringify(store['posts']))
+    log(posts)
+    res(json(posts))
   })
   .post('/new', ({store, body, set, getDate}) => {
     log(getDate())

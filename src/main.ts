@@ -1,11 +1,20 @@
 import {file} from 'bun'
 import { Elysia } from "elysia";
-import {banner, res, log, json} from './functions';
+import {banner, res, log, read, json} from './functions';
 import posts from './json/posts';
 import version from './json/version'
 import {auth, account, slug} from './models';
 
 const app = new Elysia()
+  .onError(({ code, error, set }) => {
+    if (code === 'VALIDATION') {
+      set.status = 418;
+      log(error)
+      read(error.message);
+    } else {
+      set.status = 418;
+    }
+  })
   .decorate('getDate', () => Date.now())
   .get("/", () => file('./pages/index.html'))
   .get("/version", () => {

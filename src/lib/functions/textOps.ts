@@ -1,22 +1,23 @@
 import figlet from 'figlet';
+import {greeting} from '../vars/strings';
 export const read = (text:string) => {
   return text;
 }
 export const log = (data: any) => {
-  return console.log(data);
-}
-export const json = (data: any) => {
-  return JSON.stringify(data);
-}
-export const res = (data: any) => {
-  return new Response(data);
-}
-export const greet = () => {
-  let greeting = `Hello World`;
-  log(greeting)
-  read(greeting)
+  console.log(data);
 }
 
+export const greet = (custom?: string | undefined) => {
+  if (typeof custom !== 'string') {
+    log(greeting)
+    read(greeting);
+  } else {
+    log(custom);
+    read(custom);
+  }
+ 
+ 
+}
 export const banner = (data: string) => {
   figlet(data, function (err, data) {
     if (err) {

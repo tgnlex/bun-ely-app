@@ -6,7 +6,8 @@
     "dev": "bun run --watch src/main.ts"
   },
   "dependencies": {
-    "elysia": "latest"
+    "elysia": "latest",
+    "figlet": "^1.7.0"
   },
   "devDependencies": {
     "@types/figlet": "^1.5.8",

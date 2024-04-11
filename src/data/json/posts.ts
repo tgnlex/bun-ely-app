@@ -1,5 +1,5 @@
-
-const posts =  {
+import {Posts} from '../../lib/types/blogTypes';
+const posts: Posts =  {
   "posts": [
     {
       "id": 1, 

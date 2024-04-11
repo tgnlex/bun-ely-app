@@ -1,10 +1,19 @@
+// Libraries
 import {file} from 'bun'
 import { Elysia } from "elysia";
-import {banner, res, log, read, json} from './lib/functions';
-import posts from './json/posts';
-import version from './json/version'
-import {auth, account, slug} from './models/models';
-
+// JSON Imports
+import posts from './data/json/posts';
+import version from './data/json/version'
+// Model Imports
+import {auth, account} from './lib/models/models';
+// Function Imports
+import {banner, log, read} from './lib/functions/textOps';
+import {logTimestamp} from './lib/functions/timestamp';
+import {jsonRes, jsonLog} from './lib/functions/jsonOps'
+import {error} from './lib/classes/serverError';
+// Var Imports
+import {slug, idx} from './lib/vars/indexSlug';
+// Create Elysia Server
 const app = new Elysia()
   .onError(({ code, error, set }) => {
     if (code === 'VALIDATION') {
@@ -12,18 +21,19 @@ const app = new Elysia()
       log(error)
       read(error.message);
     } else {
-      set.status = 418;
+      return;
     }
   })
-  .decorate('getDate', () => Date.now())
   .get("/", () => file('./pages/index.html'))
   .get("/version", () => {
-    log(version);
-    return version;
+    jsonLog(version);
+    jsonRes(version);
   })
 .group('/user', (app) => app
+    // Auth Forms //
   .get('/login', () => file('./pages/login.html')) 
   .get('/register', () => file('./pages/register.html'))
+    // Auth Routes //
   .post('/auth/login', ({body}) => body, {
     body: auth,
     response: auth
@@ -32,24 +42,26 @@ const app = new Elysia()
     body: account, 
     response: account
   })
-  .post('/profile', () => "Profile Route")
+  .post('/profile', () => file('./pages/profile.html'))
 )
 // Blog Routes
 .group('/blog', (app) => app
-  .state(posts)
   .get("/", () => file('./pages/blog.html'))
   .get('/post/:id', ({params}) => params, {
-    params: slug
+    params: slug,
+    post: posts[idx]
   })
-  .get('/post/*', ({store, getDate}) => {
-    let posts = store['posts'];
-    log(getDate());
-    res(json(posts));
+  .get('/post/*', () => {
+    logTimestamp();
+    jsonRes(posts);
   })
-  .post('/new', ({body, set, getDate}) => {
-    log(getDate());
-    set.status = 201;
-    return {body}
+  .post('/new', ({body, set}) => {
+    logTimestamp();
+    if (error) {
+      set.status = 418;
+    } else {
+      return {body}
+    }
   })
 ).listen(3000)
 console.log(

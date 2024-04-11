@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Form</title>
+</head>
+<body>
+  <main class="container">
+    <form   
+      id="login-form"
+      class="form login-form" 
+      method="POST"
+      action="localhost:3000/user/auth/login"
+      target="_blank"
+    >
+    <h1 class="heading">Welcome Back!</h1>
+    <h2 class="subheading">Sign in below.</h2>
+    <label id="email-label" class="form-label">
+      Email:
+      <input 
+        id="login-email" 
+        type="email"
+        name="email" 
+        class="form-control form-control-email"
+        placeholder="Enter your email address.."
+      >
+    <label id="password-label" class="form-label">
+      Password:
+      <input 
+        id="login-password" 
+        type="password"
+        name="password" 
+        class="form-control form-control-password"
+        placeholder="Enter your password.."
+      >
+    </label>
+    <input 
+      id="submit" 
+      class="btn submit-btn"
+      value="login" 
+      type="submit" 
+      />
+    </form>
+    <a id="register-link" 
+       class="link internal-link" 
+       href="localhost:3000/user/register">
+      <h3 class="link-text">
+        Don't have an account? Click here!
+      </h3>
+    </a>
+  </main>
+  <!--- Inline styles are only Temporary ---->
+  <!--- Will replace with actual stylesheets-->
+  <!--- In the future.-->
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+      align-content: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+      align-content: center;
+      justify-content: center;
+    }
+    </style>
+  <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+</body>
+</html>

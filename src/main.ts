@@ -1,9 +1,9 @@
 import {file} from 'bun'
 import { Elysia } from "elysia";
-import {banner, res, log, read, json} from './functions';
+import {banner, res, log, read, json} from './lib/functions';
 import posts from './json/posts';
 import version from './json/version'
-import {auth, account, slug} from './models';
+import {auth, account, slug} from './models/models';
 
 const app = new Elysia()
   .onError(({ code, error, set }) => {
@@ -21,42 +21,38 @@ const app = new Elysia()
     log(version);
     return version;
   })
-  .listen(3000);
-
-app.group('/user', app => app
-  .get('/login', () => { `<h1>Login Form</h1>` }) 
-  .get('/register', () => { `<h1>Registration Form</h1>`})
-  .post('/login', ({body}) => body, {
+.group('/user', (app) => app
+  .get('/login', () => file('./pages/login.html')) 
+  .get('/register', () => file('./pages/register.html'))
+  .post('/auth/login', ({body}) => body, {
     body: auth,
     response: auth
   })
-  .post('/register', ({body}) => body, {
+  .post('/auth/register', ({body}) => body, {
     body: account, 
     response: account
   })
   .post('/profile', () => "Profile Route")
 )
 // Blog Routes
-app.group('/blog', app => app
+.group('/blog', (app) => app
   .state(posts)
   .get("/", () => file('./pages/blog.html'))
   .get('/post/:id', ({params}) => params, {
     params: slug
   })
   .get('/post/*', ({store, getDate}) => {
-    let posts = store['posts']
-    log(getDate())
-    log(posts)
-    res(json(posts))
+    let posts = store['posts'];
+    log(getDate());
+    res(json(posts));
   })
-  .post('/new', ({store, body, set, getDate}) => {
-    log(getDate())
+  .post('/new', ({body, set, getDate}) => {
+    log(getDate());
     set.status = 201;
     return {body}
   })
-)
-
+).listen(3000)
 console.log(
   `${banner(`Based!`)}
-  🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+  [BUN]: Server running at ${app.server?.hostname}:${app.server?.port}`
 );

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <main class="container">
+    <form   
+      id="register-form"
+      class="form register-form" 
+      method="POST"
+      action="localhost:3000/user/auth/register"
+      target="_blank"
+    >
+    <h1 class="heading">Welcome NewComer!</h1>
+    <h2 class="subheading">Fill in the fields below to create an account!.</h2>
+    <label id="user-label" class="form-label">
+      Username:
+      <input 
+        id="register-user" 
+        type="text"
+        name="user" 
+        class="form-control form-control-user"
+        placeholder="Create a username!"
+     >
+    <label id="password-label" class="form-label">
+    <label id="email-label" class="form-label">
+      Email:
+      <input 
+        id="register-email" 
+        type="email"
+        name="email" 
+        class="form-control form-control-email"
+        placeholder="Enter your email address.."
+      >
+    <label id="password-label" class="form-label">
+      Password:
+      <input 
+        id="register-password" 
+        type="password"
+        name="password" 
+        class="form-control form-control-password"
+        placeholder="Enter your password.."
+      >
+    </label>
+    <input 
+      id="submit" 
+      class="btn submit-btn"
+      value="register" 
+      type="submit" 
+      />
+    </form>
+    <a id="login-link" 
+       class="link internal-link" 
+       href="localhost:3000/user/login">
+      <h3 class="link-text">Already have an account? Click here!</h3>
+    </a>
+  </main>
+  <style>
+    html, body {
+      height: 100%;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      place-items: center;
+      align-content: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+    .register-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-items: center;
+      align-content: center;
+      justify-content: center;
+    }
+    </style>
+</body>
+<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
+</html>

@@ -6,9 +6,6 @@ const auth = obj({
 })
 
 const account = obj({  
-  age: int,
-  firstname: str,
-  lastname: str,
   email: str,
   username: str, 
   password: str, 

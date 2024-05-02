@@ -7,7 +7,9 @@
   },
   "dependencies": {
     "elysia": "latest",
-    "figlet": "^1.7.0"
+    "elysia-autoroutes": "^0.5.0",
+    "figlet": "^1.7.0",
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@types/figlet": "^1.5.8",

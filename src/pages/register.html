@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="src/style/global.css" />
+  <link rel="stylesheet" href="src/style/auth.css" />
+  <script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 </head>
 <body>
   <main class="container">
@@ -23,10 +26,8 @@
         type="text"
         name="user" 
         class="form-control form-control-user"
-        placeholder="Create a username!"
-     >
-    <label id="password-label" class="form-label">
-    <label id="email-label" class="form-label">
+        placeholder="Create a username!">
+        <label id="email-label" class="form-label">
       Email:
       <input 
         id="register-email" 
@@ -58,31 +59,6 @@
       <h3 class="link-text">Already have an account? Click here!</h3>
     </a>
   </main>
-  <style>
-    html, body {
-      height: 100%;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      place-items: center;
-      align-content: center;
-      justify-content: center;
-      width: 100%;
-      height: 100%;
-    }
-    .register-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-items: center;
-      align-content: center;
-      justify-content: center;
-    }
-    </style>
+ 
 </body>
-<script src="https://unpkg.com/htmx.org@1.9.11" integrity="sha384-0gxUXCCR8yv9FM2b+U3FDbsKthCI66oH5IA9fHppQq9DDMHuMauqq1ZHBpJxQ0J0" crossorigin="anonymous"></script>
 </html>

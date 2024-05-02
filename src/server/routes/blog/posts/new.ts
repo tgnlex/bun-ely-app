@@ -10,12 +10,11 @@ error.message = `an error has occurred while attempting to create new post`;
     log(error.message)
     return error;
   } else {
-    const name = request.body.name;
     const posts = [];
     const data = await getAllPosts()
     posts.push(data)
     let id = posts.length 
-    addPost(id, title, body, )
+   // addPost(id, title, body, )
     return {body}
     
   }

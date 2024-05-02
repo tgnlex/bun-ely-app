@@ -1,9 +1,15 @@
 import type {ElysiaApp} from '../../../main';
 import {file} from "bun";
-import {json, log, read} from '../../../lib/atomic';
+import {json, log} from '../../../lib/atomic';
+import {getPostByID} from '../../../lib/sql'
+import {Post} from '../../../../types/post'
 (app: ElysiaApp) => 
-  app.get('/blog/post/:id',  ({request,params}) => { 
-  //  const post = posts[params];
-    //const data = json(post);
-    new Response('data');   
-  })
+    app.get('blog/post/:id', async ({params} : {
+      params: number 
+    }) => {
+      const posts = await getPostByID(params);
+      const data = json(posts);
+      log(posts);
+      new Response(data);
+})
+
